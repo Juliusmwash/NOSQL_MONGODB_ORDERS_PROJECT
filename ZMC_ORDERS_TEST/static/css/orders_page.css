@@ -1,0 +1,234 @@
+* {
+    box-sizing: border-box;
+    font-family: 'Oswald', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+}
+
+.wrapper {
+    width: 100%;
+    max-width: 700px;
+    background-color: #050d36;
+    padding: 10px;
+}
+
+.container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+#shop-name,
+#date,
+#email {
+    width: 100%;
+    height: 50px;
+    font-size: 18px;
+    color: lime;
+    border: 2px solid green;
+    border-radius: 10px;
+    margin: 5px 0;
+    margin-right: 10px;
+    outline: none;
+    padding-left: 20px;
+    background-color: #4b79a1;
+}
+
+#shop-name::placeholder,
+#date::placeholder,
+#email::placeholder {
+    color: #00CED1;
+}
+
+.parent-div {
+    width: 100%;
+}
+
+#heading,
+.sort-heading,
+#admin-search {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 5px;
+    font-weight: bold;
+    font-size: 18px;
+    color: orange;
+}
+
+.search-box,
+.sort-box {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.child-div,
+.child-div2 {
+    width: 50%;
+    height: 30px;
+    color: #24fe41;
+    font-size: 16px;
+    border: 1px solid gold;
+    border-radius: 5px;
+    background: hotpink;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1px 0;
+}
+
+.admin-search-box {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#select-display,
+#select-display2,
+#select-display3 {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 10px;
+    font-size: 10px;
+    font-weight: bold;
+    margin-bottom: 3px;
+    color: green;
+}
+
+.scrollable-div {
+    width: 100%;
+    max-height: 350px;
+    align-items: center;
+    overflow-y: auto;
+    overflow-x: auto;
+    margin-top: 20px;
+    border: 2px solid brown;
+    border-radius: 10px;
+    background: black;
+    padding: 0 10px;
+    position: relative;
+}
+
+.order-page-count {
+    width: 100%;
+    height: 40px;
+    padding: 0 10px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    color: orange;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.page-count {
+    color: #ddd6f3;
+}
+
+.order-count {
+    margin-left: auto;
+    color: #ddd6f3;
+}
+
+#zmc-tv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    font-weight: bold;
+    color: #00c9ff;
+}
+
+.order-box {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border: 2px solid #4b6cb7;
+    border-radius: 10px;
+    padding: 10px 0;
+    position: relative;
+}
+
+.header-one,
+.header-two {
+    display: none;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    color: gold;
+}
+.show-order-count {
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #D31027;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.span-row,
+.span-row2 {
+    width: 100%;
+    height: 16px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    font-size: 14px;
+    padding: 10px 0;
+    color: lime;/*#FFE000;*//*#12D8FA;*/
+}
+
+.span-row {
+    font-weight: bold;
+    color: #93F9B9;/*#24C6DC;*/
+    padding-left: 30px;
+}
+
+.button-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: 20px;
+    margin-bottom: 50px;
+}
+
+.button {
+    margin-right: 2px;
+    width: 35px;
+    height: 25px;
+    margin-bottom: 5px;
+    background-color: #007bff;
+    color: #fff;
+    outline: none;
+    border: 1px solid black;
+    border-radius: 5px;
+    cursor: pointer;
+}
+

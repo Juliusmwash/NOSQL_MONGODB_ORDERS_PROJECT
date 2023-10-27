@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Old+Standard+TT:wght@400;700&family=Oswald:wght@200;300;400;500;600;700&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+		<link rel="stylesheet" href=" {{ url_for('static', filename='css/orders_page.css') }}">
+    <style>
+				/*
+				* {
+					box-sizing: border-box;
+					font-family: 'Oswald', sans-serif;
+					margin: 0;
+					padding: 0;
+				}
+				body {
+					display: flex;
+					justify-content: center;
+				}
+				.wrapper {
+					width: 100%;
+					max-width: 700px;
+					background-color: #050d36;
+					padding: 10px;
+				}
+        .container {
+					width: 100%;
+            display: flex;
+						flex-direction: column;
+        }
+
+        #shop-name,
+        #date,
+				#email {
+					width: 100%;
+					height: 50px;
+					font-size: 18px;
+					color: lime;
+					border: 2px solid green;
+					border-radius: 10px;
+						margin: 5px 0;
+						margin-right: 10px;
+						outline: none;
+						padding-left: 20px;
+						background-color: #4b79a1;
+        }
+				#shop-name::placeholder,
+				#date::placeholder,
+				#email::placeholder {
+					color: #00CED1;
+				}
+
+        .parent-div {
+            width: 100%;
+        }
+				#heading,
+				.sort-heading,
+				#admin-search {
+					width: 100%;
+					display: flex;
+					justify-content: center;
+					align-items: center;
+					margin-top: 20px;
+					margin-bottom: 5px;
+					font-weight: bold;
+					font-size: 18px;
+					color: orange;
+				}
+				.search-box,
+				.sort-box {
+					width: 100%;
+					display: flex;
+					flex-direction: column;
+					justify-content: center;
+					align-items: center;
+				}
+
+        .child-div,
+				.child-div2 {
+            width: 50%;
+						height: 30px;
+						color: #24fe41;
+						font-size: 16px;
+            border: 1px solid gold;
+						border-radius: 5px;
+						background: hotpink;
+						display: flex;
+						justify-content: center;
+						align-items: center;
+						margin: 1px 0;
+        }
+				.admin-search-box {
+					width: 100%;
+					display: flex;
+					flex-direction: column;
+					justify-content: center;
+					align-items: center;
+				}
+				#select-display,
+				#select-display2,
+				#select-display3 {
+					width: 100%;
+					display: flex;
+					justify-content: center;
+					align-items: center;
+					height: 10px;
+					font-size: 10px;
+					font-weight: bold;
+					margin-bottom: 3px;
+					color: green;
+				}
+
+
+
+
+
+
+				.scrollable-div {
+            width: 100%;
+            max-height: 350px;
+            align-items: center;
+            overflow-y: auto;
+            overflow-x: auto;
+            margin-top: 20px;
+            border: 2px solid brown;
+            border-radius: 10px;
+            background: black;
+            padding: 0 10px;
+            position: relative;
+        }
+
+				.order-page-count {
+					width: 100%;
+			    height: 40px;
+			    padding: 0 10px;
+			    display: flex;
+			    justify-content: flex-start;
+			    align-items: center;
+			    color: orange;
+			    font-size: 18px;
+			    font-weight: bold;
+				}
+
+				.page-count {
+					color: #ddd6f3;
+				}
+
+				.order-count {
+					margin-left: auto;
+					color: #ddd6f3;
+				}
+
+
+
+
+
+
+
+				#zmc-tv {
+					display: flex;
+					justify-content: center;
+					align-items: center;
+					font-size: 30px;
+					font-weight: bold;
+					color: #00c9ff;
+				}
+				.order-box {
+					width: 100%;
+					display: flex;
+					justify-content: center;
+					align-items: center;
+					margin-top: 20px;
+					margin-bottom: 20px;
+					border: 2px solid lime;
+					border-radius: 10px;
+					padding: 10px 0;
+				}
+				.header-one,
+				.header-two {
+					display: none;
+					width: 100%;
+					display: flex;
+					flex-direction: column;
+					justify-content: flex-start;
+					align-items: center;
+					color: gold;
+				}
+				.span-row,
+				.span-row2 {
+					width: 100%;
+					height: 16px;
+					display: flex;
+					justify-content: flex-start;
+					align-items: center;
+					font-size: 14px;
+				}
+				.span-row {
+					font-weight: bold;
+					color: green;
+					padding-left: 30px;
+				}
+
+        .button-container {
+					width: 100%;
+            display: flex;
+						justify-content: center;
+						align-items: center;
+						flex-wrap: wrap;
+						margin-top: 20px;
+						margin-bottom: 50px;
+        }
+
+        .button {
+            margin-right: 2px;
+						width: 35px;
+						height: 25px;
+						margin-bottom: 5px;
+            background-color: #007bff;
+            color: #fff;
+            outline: none;
+						border: 1px solid black;
+						border-radius: 5px;
+            cursor: pointer;
+        }
+				*/
+
+    </style>
+</head>
+<body>
+	<div class="wrapper">
+    <div class="container">
+        <input type="text" class="class-input" id="shop-name" placeholder="Enter Shop Name">
+        <input type="text" class="class-input" id="date" placeholder="Enter Date &ensp;&nbsp;(year-month-day)">
+				<input type="text" class="class-input" id="email" placeholder="Enter Email">
+				<input type="hidden" id="hidden-search-input">
+				<input type="hidden" id="hidden-pure-shopname-input">
+				<input type="hidden" id="hidden_no_email">
+				<input type="hidden" id="hidden-sort-input">
+    </div>
+
+		<div class="scrollable-div">
+			<!-- Your scrollable content here -->
+			<p id="zmc-tv">ORDERS SHOWN HERE</p>
+		</div>
+
+    <div class="parent-div">
+			<div id="heading">Select Search Method</div>
+			<div class="search-box">
+				<div id="select-display"></div>
+        <div class="child-div">Shop Name</div>
+        <div class="child-div">Date</div>
+				<div class="child-div">Shop Name and Date</div>
+				<div class="admin-search-box">
+					<div id="admin-search">Admin Search</div>
+					<div id="select-display3"></div>
+					<div class="child-div">Email</div>
+					<div class="child-div">Pure Shop Name</div>
+					<div class="child-div">No Email</div>
+				</div>
+			</div>
+			<div class="sort-box">
+				<div class="sort-heading">Select Sort Method</div>
+				<div id="select-display2"></div>
+        <div class="child-div2">Old to Recent</div>
+				<div class="child-div2">Recent to Old</div>
+			</div>
+    </div>
+
+
+    <div class="button-container">
+        <button class="button">1</button>
+        <button class="button">2</button>
+        <button class="button">3</button>
+				<button class="button">4</button>
+        <button class="button">5</button>
+        <button class="button">6</button>
+        <button class="button">7</button>
+        <button class="button">8</button>
+        <button class="button">9</button>
+    </div>
+		</div>
+		<script>
+			const searchDivs = document.querySelectorAll('.child-div');
+			const sortDivs = document.querySelectorAll('.child-div2');
+			const inputElements = document.querySelectorAll('.class-input');
+			const shopNameInput = document.getElementById('shop-name');
+			const dateInput = document.getElementById('date');
+			const email = document.getElementById('email');
+			const hiddenNoEmail = document.getElementById('hidden_no_email');
+			const hiddenSearchInput= document.getElementById('hidden-search-input');
+			const hiddenSortInput = document.getElementById('hidden-sort-input');
+			const hiddenPureShopnameInput = document.getElementById('hidden-pure-shopname-input');
+			const buttons = document.querySelectorAll('.button');
+			const scrollableDiv = document.querySelector('.scrollable-div');
+			const selectDisplay = document.getElementById('select-display');
+			const selectDisplay2 = document.getElementById('select-display2');
+			const selectDisplay3 = document.getElementById('select-display3');
+
+			// Variable to hold the total price as the orders are being shown
+			let grandTotalPrice = 0;
+
+			// Variables to keep page tracks
+			let pageNumber = 0;
+			let previousPage = 0;
+			let strictPageNumber = 0;
+
+			// Array to keep track of the real calculations as they happen
+			let priceArray = [];
+
+			inputElements.forEach((element) => {
+				element.addEventListener('input', () => {
+					grandTotalPrice = 0;
+				});
+			});
+
+			searchDivs.forEach((element, index) => {
+				element.addEventListener('click', () => {
+					grandTotalPrice = 0;
+					if (index === 0) {
+						hiddenSearchInput.value = 'shopname';
+						selectDisplay.textContent = element.textContent;
+					} else if(index === 1) {
+						hiddenSearchInput.value = 'date';
+						selectDisplay.textContent = element.textContent;
+					} else if (index === 2) {
+						hiddenSearchInput.value = 'both';
+						selectDisplay.textContent = element.textContent;
+					} else if (index === 3) {
+						hiddenSearchInput.value = 'email';
+						selectDisplay3.textContent = element.textContent;
+					} else if (index === 4) {
+						hiddenPureShopnameInput.value = '5';
+						selectDisplay3.textContent = element.textContent;
+					} else if (index === 5) {
+						hiddenNoEmail.value = 1;
+						selectDisplay3.textContent += ` / ${element.textContent}`;
+					}
+				});
+			});
+			sortDivs.forEach((element, index) => {
+				element.addEventListener('click', () => {
+					if (index === 0) {
+						hiddenSortInput.value = 1;
+						selectDisplay2.textContent = element.textContent;
+					} else if(index === 1) {
+						hiddenSortInput.value = -1;
+						selectDisplay2.textContent = element.textContent;
+					}
+				});
+			});
+			buttons.forEach((element) => {
+				element.addEventListener('click', () => {
+					alert(`grandTotalPrice = ${grandTotalPrice}`);
+					element.style.backgroundColor = 'cyan';
+					pageNumber = parseInt(element.textContent);
+					alert(`page number = ${pageNumber}`);
+					let check = true;
+
+					const num = parseInt(element.textContent);
+					const skip = (num - 1) * 20;
+
+					// Define base URL
+					const baseUrl = "/fetch_orders";
+
+					// Create an object to hold the parameters
+					let params = new URLSearchParams();
+
+					// Add parameters to the object
+					if (hiddenSearchInput.value === 'shopname') {
+						if (!shopNameInput.value) {
+							shopNameInput.focus();
+							check = false;
+						}
+						params.append("shop_name", shopNameInput.value);
+						if (hiddenSortInput.value) {
+							params.append("sort_order", hiddenSortInput.value);
+						} else {
+							params.append("sort_order", -1);
+						}
+
+					} else if (hiddenSearchInput.value === 'date') {
+						if (!dateInput.value) {
+							alert("some input empty");
+							dateInput.focus();
+						}
+						params.append("date", dateInput.value);
+						if (hiddenSortInput.value) {
+							params.append("sort_order", hiddenSortInput.value);
+            } else {
+              params.append("sort_order", -1);
+            }
+					} else if (hiddenSearchInput.value === 'both') {
+						if (!shopNameInput.value) {
+              shopNameInput.focus();
+            }
+						if (!dateInput.value) {
+              dateInput.focus();
+							check = false;
+            }
+						params.append("shop_name", shopNameInput.value);
+						params.append("date", dateInput.value);
+						if (hiddenSortInput.value) {
+							params.append("sort_order", hiddenSortInput.value);
+						} else {
+							params.append("sort_order", -1);
+						}
+
+					} else if (hiddenSearchInput.value === 'email') {
+						if (!email.value) {
+							email.focus();
+							check = false;
+						}
+						params.append("email", email.value);
+						if (hiddenSortInput.value) {
+							params.append("sort_order", hiddenSortInput.value);
+						} else {
+							params.append("sort_order", -1);
+						}
+					} else {
+							params.append("sort_order", -1);
+						}
+
+
+					// Construct the full URL with parameters
+					if (hiddenPureShopnameInput.value && hiddenPureShopnameInput.value === "5") {
+						params = new URLSearchParams();
+						if (!shopNameInput.value) {
+							shopNameInput.focus();
+							check = false;
+						}
+						params.append("pure_shop", shopNameInput.value);
+						params.append("sort_order", -1);
+					}
+					if (hiddenNoEmail.value) {
+						params.append("no_email", "no_email");
+					}
+					params.append("skip", skip);
+
+					if (check) {
+
+					const fullUrl = `${baseUrl}?${params.toString()}`;
+					alert(`fullUrl = ${fullUrl}`);
+
+					// Send a GET request and update the div when the response is received
+					fetch(fullUrl)
+						.then(response => {
+							if (!response.ok) {
+								throw new Error('Network response was not ok');
+							}
+              return response.json();
+						}).then(data => {
+							// Access objects from the 'order' key
+							const orderObjects = data.map(item => item.order);
+							const num = orderObjects.length;
+							if (orderObjects.length > 0) {
+								grandTotalPrice = parseFloat(grandTotalPrice);
+								let tempTotalPrice = 0;
+
+								let ordersHTML = ordersCountElementsGenerator(num, pageNumber);
+
+								for (let i = 0; i < orderObjects.length; i++) {
+									const obj = orderObjects[i];
+									tempTotalPrice += parseFloat(obj.total_price);
+									ordersHTML += divElementsGenerator(obj);
+								}
+								alert(`price array length = ${priceArray.length}`);
+
+								// Reverse grandtotal calculations
+								if (pageNumber <= previousPage && previousPage !== 0) {
+									let reducePrice = 0
+									for (let i = pageNumber; i < priceArray.length; i++) {
+										reducePrice += priceArray[i];
+										alert(`reducePrice = ${reducePrice}`);
+									}
+									priceArray.splice(pageNumber)
+									grandTotalPrice = parseFloat(grandTotalPrice - reducePrice).toFixed(2);
+									previousPage = pageNumber - 1;
+									alert("decremented");
+								} else if (pageNumber > previousPage && strictPageNumber != pageNumber) {
+									priceArray.push(tempTotalPrice);
+									grandTotalPrice = parseFloat((grandTotalPrice + tempTotalPrice)).toFixed(2);
+									previousPage = pageNumber;
+								}
+								strictPageNumber = pageNumber;
+
+								ordersHTML += totalPriceElements(grandTotalPrice);
+								// Update the div's innerHTML
+								scrollableDiv.innerHTML = ordersHTML;
+							} else {
+								scrollableDiv.innerHTML = `<p style="font-size: 18px; color: #FF0000;" id="zmc-tv">No orders match the requested field(s), or, all orders have already been shown.</p>`
+							}
+						}).catch(error => {
+							console.error('Error:', error);
+							alert(`Error: ${error}`);
+						});
+					}
+
+				});
+			});
+
+			function ordersCountElementsGenerator(orderCount, pageNumber) {
+				return `
+				<div class="order-page-count">
+					<span class="page-count">Pg. ${pageNumber}</span>
+					<span class="order-count">${orderCount} Orders</span>
+				</div>
+				`;
+			}
+
+			function divElementsGenerator(obj) {
+				return `
+				<div class="order-box">
+            <div class="header-one">
+                <span class="span-row" id="shop_name">Shop Name</span>
+                <span class="span-row" id="item_type">Item Type</span>
+                <span class="span-row" id="price_per_kg">Price</span>
+                <span class="span-row" id="quantity">Quantity</span>
+                <span class="span-row" id="total_price">Total Price</span>
+                <span class="span-row" id="date_time">Date & Time</span>
+            </div>
+            <div class="header-two">
+                <span class="span-row2" id="shop_name_value">${obj.shop_name}</span>
+                <span class="span-row2" id="item_type_value">${obj.item_type}</span>
+                <span class="span-row2" id="price_per_kg_value">Ksh. ${obj.price_kg} &ensp;/kg</span>
+								<span class="span-row2" id="quantity_value">${obj.quantity}</span>
+                <span class="span-row2" id="total_price_value">Ksh. ${obj.total_price}</span>
+                <span class="span-row2" id="date_time_value">${obj.date_time}</span>
+            </div>
+				</div>
+				`;
+			}
+
+			function totalPriceElements(ttlPrc) {
+				return `
+				<div class="total-price" style="width: 100%; height: 40px; padding: 0 10px; display: flex; justify-content: center; align-items: center; color: orange; font-size: 18px; font-weight: bold; border: 2px solid #00c6ff; border-radius: 10px; margin-bottom: 50px;">
+					<span class="total-price-header" style="margin-right: 10px; color: #ddd6f3;">GRAND TOTAL</span>
+					<span class="total-price-value" style="color: #11FFBD; font-size: 20px;">Ksh. ${ttlPrc}</span>
+				</div>
+				`;
+			}
+
+
+
+		</script>
+</body>
+</html>
+
