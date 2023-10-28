@@ -255,7 +255,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     <span class="span-row2">Ksh. ${obj.total_price}</span>
                     <span class="span-row2">${obj.date_time}</span>
                     <span class="span-row2">${obj.ser_sort[0]}</span>
-                    <span class="span-row2">${obj.order_id}</span>
+                    <span class="span-row2" style="font-size: 9px;">${obj.order_id}</span>
                 </div>
             </div>
         `;

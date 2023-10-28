@@ -17,19 +17,26 @@ db = client['ordersdatabase']
 
 @app.route('/insert_order', methods=["GET"])
 def insert_order():
-    # Get the data to insert from the request
-    orders_object = list_of_orders_simulation()
-    orders_list = simulate_order_object(orders_object)
-
-    collection = db['orders']
-
-    # Insert the data into the collection
+    time_list = [300, 400, 500, 900, 1000, 1400, 1650, 1970, 2000, 2340, 2540, 3000]
     count = 0
-    for obj in orders_list:
-        result = collection.insert_one(obj)
-        if result.acknowledged:
-            count += 1
-            print("order inserted successfully")
+
+    for i in range(0, 300):
+        milliseconds = random.choice(time_list)
+        seconds = milliseconds / 1000
+        time.sleep(seconds)
+
+        # Get the data to insert from the request
+        orders_object = list_of_orders_simulation()
+        orders_list = simulate_order_object(orders_object)
+
+        collection = db['orders']
+
+        # Insert the data into the collection
+        for obj in orders_list:
+            result = collection.insert_one(obj)
+            if result.acknowledged:
+                count += 1
+                print("order inserted successfully")
     if count:
         return jsonify({"message": f"{count} orders inserted successfully!"}), 201
     else:
@@ -66,23 +73,40 @@ def simulate_order_object(order_data):
     order_obj = {}
     # Generate a random number for date and UUID for the order key
     num = str(random.randint(0, 59))
-    #num = 11
+
+    hour = str(random.randint(12, 23))
+    seconds = str(random.randint(10, 59))
+    mili_sec = str(random.randint(10, 59))
+    gen_time = f"{hour}:{seconds}:{mili_sec}"
+
+    day = str(random.randint(20, 30))
+    gen_date = f"2023-10-{day}"
+
+    gen_date_time = f"{gen_date} {gen_time}"
+
+    timestamp = datetime.datetime.strptime(gen_date_time, "%Y-%m-%d %H:%M:%S").timestamp()
 
     orders_array = list()
 
     for key, value in order_data.items():
+        value['order_id'] = str(uuid.uuid4())
         # Get the current date
         current_date = datetime.date.today()
 
         # Convert the current date to a string
         date = current_date.strftime("%Y-%m-%d")
         #date = "2023-10-28"
+        email_list = ["juliusmwasstech@gmail.com", "cutejuliusmwash@gmail.com", "mwashlyrics@gmail.com", "gracewambui@gmail.com", "peternjuguna@gmail.com", "oliviawanja@gmail.com", "juliusmwangi@gmail.com"]
+
+        email = random.choice(email_list)
+
 
         # Add search/sort array
-        ser_sort = ['cutejuliusmwass@gmail.com', date, int(time.time())]
+        ser_sort = [email, gen_date, timestamp] #int(time.time())]
 
         order_obj = dict()
-        value['date_time'] = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        value['date_time'] = gen_date_time
+        #datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         value['ser_sort'] = ser_sort
         order_obj["order"] = value
         orders_array.append(order_obj)
@@ -90,58 +114,24 @@ def simulate_order_object(order_data):
     return orders_array
 
 def list_of_orders_simulation():
-    shop_name = "Goshen Butchery"
+    butch_list = ["Jamii Butchery", "Goshen Butchery", "Generation Butchery", "Meatpoint Butchery", "Gaitho Butchery", "Sammy Butchery", "Wangong Butchery"]
+    meat_list = ["Beef", "Mutton", "Pork", "Chicken", "Matumbo", "Fry"]
+    price_list = [530.35, 550.87, 600.48, 680.56, 700.76, 800.82, 770.65, 810.15, 900.95]
+    total_price_list = [1800, 1500, 890, 650, 3500, 2700, 380, 530, 4100, 2300, 2500, 3250, 3920, 1379, 1820, 1733]
+
+    price_kg = random.choice(price_list)
+    total_price = random.choice(total_price_list)
+    result = float(total_price) / price_kg
+    quantity = round(result, 2)
 
     orders_list = {
         'order_1': {
-            'shop_name': shop_name,
-            'item_type': "Beef",
-            'price_kg': 600,
-            'quantity': 3,
-            'total_price': 1800,
-        },
-        'order_2': {
-            'shop_name': 'Jamii Butchery',
-            'item_type': 'Mutton',
-            'price_kg': 600,
-            'quantity': 2.5,
-            'total_price': 1500,
-        },
-        'order_3': {
-            'shop_name': 'Jamii Butchery',
-            'item_type': 'Beef',
-            'price_kg': 450,
-            'quantity': 2,
-            'total_price': 900,
-        },
-        'order_4': {
-            'shop_name': 'Jamii Butchery',
-            'item_type': 'Chicken',
-            'price_kg': 520,
-            'quantity': 3,
-            'total_price': 1560,
-        },
-        'order_5': {
-            'shop_name': 'Jamii Butchery',
-            'item_type': 'Mutton',
-            'price_kg': 640,
-            'quantity': 4,
-            'total_price': 2560,
-        },
-        'order_6': {
-            'shop_name': 'Jamii Butchery',
-            'item_type': 'Beef Fry',
-            'price_kg': 510,
-            'quantity': 1,
-            'total_price': 510,
-        },
-        'order_7': {
-            'shop_name': 'Goshen Butchery',
-            'item_type': 'Matumbo',
-            'price_kg': 300,
-            'quantity': 5,
-            'total_price': 1500,
-        },
+            'shop_name': random.choice(butch_list),
+            'item_type': random.choice(meat_list),
+            'price_kg': str(price_kg),
+            'total_price': str(total_price),
+            'quantity': str(quantity)
+            }
         }
     return orders_list
 
@@ -268,7 +258,7 @@ def fetch_orders():
         print('default')
         results = list(collection.find(
             #{'order.ser_sort.0': email},
-            {'order.shop_name': 'Jamii Butchery'},
+            {'order.ser_sort.0': 'juliusmwasstech@gmail.com'},
             {'_id': 0}).limit(
                 limit).skip(skip).sort([('order.ser_sort.2', sort_order)]))
 
